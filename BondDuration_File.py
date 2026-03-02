@@ -12,4 +12,5 @@ def getBondDuration(y, face, couponRate, m, ppy=1):
     discount = 1 / (1 + r) ** t
     pvcf = cf * discount
     
-    return np.sum(t * pvcf) / np.sum(pvcf)
+    # Divide by ppy to convert the duration from periods back to years
+    return (np.sum(t * pvcf) / np.sum(pvcf)) / ppy
