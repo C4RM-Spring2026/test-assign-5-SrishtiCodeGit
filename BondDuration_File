@@ -1,0 +1,15 @@
+import numpy as np
+
+def getBondDuration(y, par, cp, m, p=1):
+    n_per = m * p
+    r_val = y / p
+    c_val = cp * par / p
+    
+    times = np.arange(1, n_per + 1)
+    flows = np.full(n_per, c_val)
+    flows[-1] += par
+    
+    disc = 1 / (1 + r_val) ** times
+    pv = flows * disc
+    
+    return np.sum(times * pv) / np.sum(pv)
